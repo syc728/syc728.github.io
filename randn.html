@@ -3,19 +3,34 @@
   <title>Random Number Generator</title>
   <script>
     function generate_num() {
-      document.getElementById("num").innerHTML = "";
-      iters = 2;
+      var iters = 2; // Number(document.getElementById("digits").value);
+      var min_n = 1; // Number(document.getElementById("min_n").value);
+      var max_n = 6; //Number(document.getElementById("max_n").value);
       for(var i = 0; i < iters; i++) {
-        document.getElementById("num").innerHTML += Math.floor(Math.random() * (7 - 1) + 1).toString();
+        document.getElementById("num").innerHTML += Math.floor(Math.random() * (max_n + 1 - min_n) + min_n).toString();
+      }
+      document.getElementById("num").innerHTML += " "
+    }
+
+    function batch_generate_num() {
+      document.getElementById("num").innerHTML = "";
+      var iters = 100;
+      for(var i = 0; i < iters; i++) {
+        generate_num();
       }
     }
   </script>
   </head>
   <body style="text-align: center">
     <h2>Random Number Generator</h2>
-    <button onclick="generate_num()"> Click </button>
+    <!-- <div id="set" class="setting">
+      digits:  <input id="digits" /> <br/> <br/>
+      min_n on each digits: <input id="min_n" /> <br/> <br/>
+      max_n on each digits: <input id="max_n" /> <br/> <br/>
+    </div> -->
+    <button onclick="batch_generate_num()"> Click </button>
     <br/>
     <br/>
-    <div id="num" class="number" style="font-size: 24px">---</div>
+    <textarea id="num" class="number" style="font-size: 24px; font-family: 'Courier New', Courier, monospace" cols="30" rows="11" wrap="hard"></textarea>
   </body>
 </html>
